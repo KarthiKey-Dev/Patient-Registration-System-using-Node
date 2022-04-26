@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const mongoString = process.env.DATABASE_URL;
+const uri = process.env.MONGODB_URI;
 const routes = require("./routes/routes");
 var bodyParser = require("body-parser");
 
@@ -13,11 +13,8 @@ var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
 app.use("/api", routes);
-var settings = {
-  // reconnectTries : Number.MAX_VALUE,
-  autoReconnect: true,
-};
-mongoose.connect(mongoString);
+
+mongoose.connect(uri);
 const database = mongoose.connection;
 
 database.on("error", (error) => {
