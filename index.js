@@ -25,7 +25,5 @@ database.once("connected", () => {
   console.log("Database Connected");
 });
 app.use(express.json());
-
-app.listen(4000, () => {
-  console.log(`Server Started at ${4000}`);
-});
+const port = process.env.PORT || 3000;
+app.listen(port);
