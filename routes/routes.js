@@ -58,12 +58,8 @@ router.patch("/update/:id", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const updatedData = req.body;
-    const options = { new: true };
-
-    const result = await Model.findByIdAndUpdate(id, updatedData, options);
-
-    res.send(result);
+    const data = await Model.findByIdAndDelete(id);
+    res.send(` ${data.name} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
