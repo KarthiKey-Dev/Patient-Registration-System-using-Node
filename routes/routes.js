@@ -7,11 +7,11 @@ const router = express.Router();
 //Post Method
 router.post("/post", async (req, res) => {
   const data = await new Model({
-    username: req.body.user_name,
-    userPassword: req.body.user_password,
-    userOrganisation: req.body.user_org,
-    userPosition: req.body.user_position,
-    userType: req.body.user_type,
+    user_name: req.body.user_name,
+    user_password: req.body.user_password,
+    user_org: req.body.user_org,
+    user_position: req.body.user_position,
+    user_type: req.body.user_type,
   });
   try {
     const dataToSave = await data.save();
@@ -61,7 +61,7 @@ router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
-    res.send(` ${data.name} has been deleted..`);
+    res.send(` ${data.user_name} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
