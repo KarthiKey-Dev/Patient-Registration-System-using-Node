@@ -6,10 +6,12 @@ const router = express.Router();
 
 //Post Method
 router.post("/post", async (req, res) => {
-  console.log("req", req.body);
   const data = await new Model({
-    name: req.body.name,
-    age: req.body.age,
+    username: req.body.user_name,
+    userPassword: req.body.user_password,
+    userOrganisation: req.body.user_org,
+    userPosition: req.body.user_position,
+    userType: req.body.user_type,
   });
   try {
     const dataToSave = await data.save();

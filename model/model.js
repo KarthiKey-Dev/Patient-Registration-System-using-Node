@@ -3,13 +3,25 @@
 const mongoose = require("mongoose");
 
 const dataSchema = new mongoose.Schema({
-  name: {
+  user_name: {
     required: true,
     type: String,
   },
-  age: {
+  user_password: {
     required: true,
-    type: Number,
+    type: String,
+  },
+  user_org: {
+    required: true,
+    type: String,
+  },
+  user_position: {
+    required: true,
+    type: String,
+  },
+  user_type: {
+    required: true,
+    type: String,
   },
 });
 
