@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/newCase", async (req, res) => {
   const data = await new Model({
     case_status: req.body.case_status,
-    user_created_by: req.body.user_created_by,
+    user_id: req.body.user_id,
     created_At: req.body.created_at,
     updated_At: req.body.updated_at,
     patient_name: req.body.patient_name,
