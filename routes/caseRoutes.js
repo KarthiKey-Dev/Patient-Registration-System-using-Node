@@ -9,8 +9,8 @@ router.post("/newCase", async (req, res) => {
   const data = await new Model({
     case_status: req.body.case_status,
     user_id: req.body.user_id,
-    created_At: req.body.created_at,
-    updated_At: req.body.updated_at,
+    created_At: req.body.created_At,
+    updated_At: req.body.updated_At,
     patient_name: req.body.patient_name,
     patient_mobile: req.body.patient_mobile,
     patient_aadhar: req.body.patient_aadhar,
