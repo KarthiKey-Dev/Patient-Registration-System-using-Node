@@ -1,17 +1,26 @@
 /** @format */
 const express = require("express");
-const Model = require("../model/model");
+const Model = require("../model/caseModel");
 
 const router = express.Router();
 
 //Post Method
-router.post("/post", async (req, res) => {
+router.post("/newCase", async (req, res) => {
   const data = await new Model({
-    user_name: req.body.user_name,
-    user_password: req.body.user_password,
-    user_org: req.body.user_org,
-    user_position: req.body.user_position,
-    user_type: req.body.user_type,
+    case_status: req.body.case_status,
+    user_created_by: req.body.user_created_by,
+    patient_name: req.body.patient_name,
+    patient_mobile: req.body.patient_mobile,
+    patient_aadhar: req.body.patient_aadhar,
+    patient_email: req.body.patient_email,
+    patient_dob: req.body.patient_dob,
+    patient_age: req.body.patient_age,
+    patient_weight: req.body.patient_weight,
+    patient_height: req.body.patient_height,
+    patient_bmi: req.body.patient_bmi,
+    patient_rbs: req.body.patient_rbs,
+    patient_bp: req.body.patient_bp,
+    patient_remarks: req.body.patient_remarks,
   });
   try {
     const dataToSave = await data.save();
@@ -22,7 +31,7 @@ router.post("/post", async (req, res) => {
 });
 
 //Get all Method
-router.get("/getAll", async (req, res) => {
+router.get("/getCaseAll", async (req, res) => {
   try {
     const data = await Model.find();
     res.json(data);
@@ -32,7 +41,7 @@ router.get("/getAll", async (req, res) => {
 });
 
 //Get by ID Method
-router.get("/getOne/:id", async (req, res) => {
+router.get("/getCaseBy/:id", async (req, res) => {
   try {
     const data = await Model.findById(req.params.id);
     res.json(data);
@@ -42,7 +51,7 @@ router.get("/getOne/:id", async (req, res) => {
 });
 
 //Update by ID Method
-router.patch("/update/:id", async (req, res) => {
+router.patch("/updateCase/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
@@ -57,7 +66,7 @@ router.patch("/update/:id", async (req, res) => {
 });
 
 //Delete by ID Method
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/deleteCase/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
