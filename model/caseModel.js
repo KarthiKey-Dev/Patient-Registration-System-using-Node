@@ -7,9 +7,17 @@ const caseSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  user_created_by: {
+  user_id: {
     required: true,
-    type: Number,
+    type: String,
+  },
+  created_At: {
+    required: true,
+    type: String,
+  },
+  updated_At: {
+    required: true,
+    type: String,
   },
   patient_name: {
     required: true,
