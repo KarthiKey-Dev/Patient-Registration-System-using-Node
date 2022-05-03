@@ -6,9 +6,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
 
-const registrationRoutes = require("./routes/registrationRoutes");
-const caseRoutes = require("./routes/caseRoutes");
-const loginRoutes = require("./routes/caseRoutes");
+const registeruser = require("./routes/registrationRoutes");
+const cases = require("./routes/caseRoutes");
+const login = require("./routes/loginRoutes");
 // const offlineSync = require("./routes/caseRoutes");
 
 var bodyParser = require("body-parser");
@@ -17,9 +17,9 @@ const app = express();
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-app.use("/register/", registrationRoutes);
-app.use("/case/", caseRoutes);
-app.use("/login/", loginRoutes);
+app.use("/case/", cases);
+app.use("/register/", registeruser);
+app.use("/login/", login);
 
 mongoose.connect(uri);
 const database = mongoose.connection;
