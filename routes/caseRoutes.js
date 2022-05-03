@@ -72,7 +72,7 @@ router.delete("/deleteCase/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
-    res.send(` ${data.user_name} has been deleted..`);
+    res.send(` ${data.patient_name} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
