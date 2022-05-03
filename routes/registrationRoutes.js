@@ -1,7 +1,7 @@
 /** @format */
 const express = require("express");
-const Model = require("../model/userModel");
-
+const Model = require("../model/registrationModel");
+import bcrypt from "bcryptjs";
 const router = express.Router();
 
 //Post Method
@@ -14,6 +14,16 @@ router.post("/post", async (req, res) => {
     user_type: req.body.user_type,
   });
   try {
+    const encryptedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = await Model.findOne({ email: req.body.user_name });
+    if (user) {
+      return res.status(400).json("username already exist");
+    }
+    const newUser = new Model({
+      Name: req.body.Name,
+      email: req.body.email,
+      password: encryptedPassword,
+    });
     const dataToSave = await data.save();
     res.status(200).json(dataToSave);
   } catch (error) {

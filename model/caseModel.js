@@ -13,11 +13,12 @@ const caseSchema = new mongoose.Schema({
   },
   created_At: {
     required: true,
-    type: String,
+    type: Date,
   },
   updated_At: {
     required: true,
-    type: String,
+    type: Date,
+    default: Date.now,
   },
   patient_name: {
     required: true,
@@ -25,10 +26,10 @@ const caseSchema = new mongoose.Schema({
   },
   patient_mobile: {
     required: true,
-    type: String,
+    type: Number,
   },
   patient_aadhar: {
-    required: true,
+    // required: true,
     type: String,
   },
   patient_email: {
@@ -44,27 +45,27 @@ const caseSchema = new mongoose.Schema({
     type: String,
   },
   patient_weight: {
-    required: true,
+    // required: true,
     type: String,
   },
   patient_height: {
-    required: true,
+    // required: true,
     type: String,
   },
   patient_bmi: {
-    required: true,
+    // required: true,
     type: String,
   },
   patient_rbs: {
-    required: true,
+    // required: true,
     type: String,
   },
   patient_bp: {
-    required: true,
+    // required: true,
     type: String,
   },
   patient_remarks: {
-    required: true,
+    // required: true,
     type: String,
   },
 });

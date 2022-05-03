@@ -5,8 +5,11 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
-const userRoutes = require("./routes/userRoutes");
+
+const registrationRoutes = require("./routes/registrationRoutes");
 const caseRoutes = require("./routes/caseRoutes");
+const loginRoutes = require("./routes/caseRoutes");
+// const offlineSync = require("./routes/caseRoutes");
 
 var bodyParser = require("body-parser");
 
@@ -14,8 +17,9 @@ const app = express();
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-app.use("/user/", userRoutes);
+app.use("/register/", registrationRoutes);
 app.use("/case/", caseRoutes);
+app.use("/login/", loginRoutes);
 
 mongoose.connect(uri);
 const database = mongoose.connection;
