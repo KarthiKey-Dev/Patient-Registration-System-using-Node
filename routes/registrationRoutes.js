@@ -1,7 +1,7 @@
 /** @format */
 const express = require("express");
 const Model = require("../model/registrationModel");
-// const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const router = express.Router();
 const saltRounds = 10;
 //Post Method
