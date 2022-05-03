@@ -13,14 +13,14 @@ router.post("/auth", async (req, res) => {
   // });
   const { error } = validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "invalid resquest" });
   }
   try {
     const user = await data.findOne({ user_name: req.body.user_name });
     if (!user) {
       return res.status(400).json({ message: "user not found" });
     }
-    const isMatch = await user.matchPassword(user_password);
+    const isMatch = user.user_password === req.body.user_password;
     if (!isMatch) {
       return res.status(400).json({ message: "password not found" });
     }
