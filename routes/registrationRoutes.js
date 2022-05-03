@@ -7,7 +7,7 @@ const saltRounds = 10;
 //Post Method
 router.post("/create", async (req, res) => {
   try {
-    const user = await Model.find({ user_name: req.body.user_name });
+    const user = await Model.findOne({ user_name: req.body.user_name });
     if (user) {
       return res.status(400).json("username already exist");
     }
