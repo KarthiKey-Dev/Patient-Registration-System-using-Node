@@ -12,11 +12,10 @@ const caseSchema = new mongoose.Schema({
     type: String,
   },
   created_At: {
-    required: true,
     type: Date,
+    default: Date.now,
   },
   updated_At: {
-    required: true,
     type: Date,
     default: Date.now,
   },
