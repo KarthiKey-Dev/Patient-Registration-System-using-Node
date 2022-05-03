@@ -11,10 +11,10 @@ router.post("/auth", async (req, res) => {
   //   user_name: req.body.user_name,
   //   user_password: req.body.user_password,
   // });
-  const { error } = validate(req.body);
-  if (error) {
-    return res.status(400).json({ message: "invalid resquest" });
-  }
+  // const { error } = validate(req.body);
+  // if (error) {
+  //   return res.status(400).json({ message: "invalid resquest" });
+  // }
   try {
     const user = await data.findOne({ user_name: req.body.user_name });
     if (!user) {
