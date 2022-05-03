@@ -1,6 +1,6 @@
 /** @format */
 const express = require("express");
-const Model = require("../model/loginModel");
+const Model = require("../model/registrationModel");
 
 const router = express.Router();
 
