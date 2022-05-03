@@ -3,18 +3,18 @@ const express = require("express");
 const Model = require("../model/registrationModel");
 // const bcrypt = require("bcryptjs");
 const router = express.Router();
-
+const saltRounds = 10;
 //Post Method
 router.post("/create", async (req, res) => {
-  const data = await new Model({
-    user_name: req.body.user_name,
-    user_password: req.body.user_password,
-    user_org: req.body.user_org,
-    user_position: req.body.user_position,
-    user_type: req.body.user_type,
-  });
   try {
-    // const encryptedPassword = await bcrypt.hash(req.body.user_password, 10);
+    const hashedPwd = await bcrypt.hash(req.body.user_password, saltRounds);
+    const data = await new Model({
+      user_name: req.body.user_name,
+      user_password: hashedPwd,
+      user_org: req.body.user_org,
+      user_position: req.body.user_position,
+      user_type: req.body.user_type,
+    });
     const user = await Model.findOne({ user_name: req.body.user_name });
     if (user) {
       return res.status(400).json("username already exist");

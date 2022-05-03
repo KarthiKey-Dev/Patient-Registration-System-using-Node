@@ -1,7 +1,7 @@
 /** @format */
 const express = require("express");
 const Model = require("../model/loginModel");
-
+bcrypt = require("bcrypt");
 const router = express.Router();
 
 //Post Method
@@ -18,16 +18,22 @@ router.post("/auth", async (req, res) => {
   // }
   try {
     const user = await data.findOne({ user_name: req.body.user_name });
-    if (!user) {
-      return res.status(400).json({ message: "incorrect username" });
+    if (user) {
+      const cmp = await bcrypt.compare(
+        req.body.user_password,
+        user.user_password
+      );
+      // const isMatch = user.user_password === req.body.user_password;
+      if (cmp) {
+        res.send("Auth Successful");
+      } else {
+        res.send("Wrong username or password.");
+      }
+    } else {
+      res.send("Wrong username or password.");
     }
-    // const isMatch = user.user_password === req.body.user_password;
-    if (user.user_password !== req.body.user_password) {
-      return res.status(400).json({ message: "incorrect password" });
-    }
-    res.status(200).json({ message: "logged in successfully" });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: "something went wrong" });
   }
 });
 
