@@ -18,7 +18,7 @@ var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
 app.use("/case/", cases);
-app.use("/register/", registeruser);
+app.use("/user/", registeruser);
 app.use("/login/", login);
 
 mongoose.connect(uri);
