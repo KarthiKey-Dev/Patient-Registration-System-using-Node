@@ -1,32 +1,32 @@
 /** @format */
 const express = require("express");
 const Model = require("../model/registrationModel");
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const router = express.Router();
 
 //Post Method
 router.post("/create", async (req, res) => {
-  // const data = await new Model({
-  //   user_name: req.body.user_name,
-  //   user_password: req.body.user_password,
-  //   user_org: req.body.user_org,
-  //   user_position: req.body.user_position,
-  //   user_type: req.body.user_type,
-  // });
+  const data = await new Model({
+    user_name: req.body.user_name,
+    user_password: req.body.user_password,
+    user_org: req.body.user_org,
+    user_position: req.body.user_position,
+    user_type: req.body.user_type,
+  });
   try {
-    const encryptedPassword = await bcrypt.hash(req.body.user_password, 10);
-    const user = await Model.findOne({ email: req.body.user_name });
+    // const encryptedPassword = await bcrypt.hash(req.body.user_password, 10);
+    const user = await Model.findOne({ user_name: req.body.user_name });
     if (user) {
       return res.status(400).json("username already exist");
     }
-    const newUser = new Model({
-      user_name: req.body.user_name,
-      user_password: encryptedPassword,
-      user_org: req.body.user_org,
-      user_position: req.body.user_position,
-      user_type: req.body.user_type,
-    });
-    const dataToSave = await newUser.save();
+    // const newUser = new Model({
+    //   user_name: req.body.user_name,
+    //   user_password: req.body.user_password,
+    //   user_org: req.body.user_org,
+    //   user_position: req.body.user_position,
+    //   user_type: req.body.user_type,
+    // });
+    const dataToSave = await data.save();
     res.status(200).json(dataToSave);
   } catch (error) {
     res.status(400).json({ message: error.message });
