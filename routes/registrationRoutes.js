@@ -7,6 +7,10 @@ const saltRounds = 10;
 //Post Method
 router.post("/create", async (req, res) => {
   try {
+    const user = await Model.find({ user_name: req.body.user_name });
+    if (user) {
+      return res.status(400).json("username already exist");
+    }
     const hashedPwd = await bcrypt.hash(req.body.user_password, saltRounds);
     const data = await new Model({
       user_name: req.body.user_name,
@@ -15,10 +19,7 @@ router.post("/create", async (req, res) => {
       user_position: req.body.user_position,
       user_type: req.body.user_type,
     });
-    const user = await Model.findOne({ user_name: req.body.user_name });
-    if (user) {
-      return res.status(400).json("username already exist");
-    }
+
     // const newUser = new Model({
     //   user_name: req.body.user_name,
     //   user_password: req.body.user_password,

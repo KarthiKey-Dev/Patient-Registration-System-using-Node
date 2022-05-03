@@ -12,15 +12,15 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   user_org: {
-    required: true,
+    // required: true,
     type: String,
   },
   user_position: {
-    required: true,
+    // required: true,
     type: String,
   },
   user_type: {
-    required: true,
+    // required: true,
     type: String,
   },
 });
