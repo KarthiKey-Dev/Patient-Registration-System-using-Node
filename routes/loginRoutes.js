@@ -18,7 +18,7 @@ router.post("/auth", async (req, res) => {
       // const isMatch = user.user_password === req.body.user_password;
       const cmp = req.body.user_password === user.user_password;
       if (cmp) {
-        res.send("Auth Successful");
+        res.json(user);
       } else {
         res.send("invalid password.");
       }
