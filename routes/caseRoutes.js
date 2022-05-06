@@ -105,4 +105,13 @@ router.post("/Sync", async (req, res) => {
   }
 });
 
+router.post("/search-case", async (req, res) => {
+  try {
+    const find = await Model.find({ patient_name: req.body.patient_name });
+    res.json(find);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;
