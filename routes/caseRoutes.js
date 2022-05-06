@@ -78,4 +78,31 @@ router.delete("/deleteCase/:id", async (req, res) => {
   }
 });
 
+router.post("/Sync", async (req, res) => {
+  try {
+    const dataToSave = await req.body.map((e) => {
+      const data = new Model({
+        case_status: e.case_status,
+        user_id: e.user_id,
+        patient_name: e.patient_name,
+        patient_mobile: e.patient_mobile,
+        patient_aadhar: e.patient_aadhar,
+        patient_email: e.patient_email,
+        patient_dob: e.patient_dob,
+        patient_age: e.patient_age,
+        patient_weight: e.patient_weight,
+        patient_height: e.patient_height,
+        patient_bmi: e.patient_bmi,
+        patient_rbs: e.patient_rbs,
+        patient_bp: e.patient_bp,
+        patient_remarks: e.patient_remarks,
+      });
+      data.save();
+    });
+    res.status(200).json({ message: "Success" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;
