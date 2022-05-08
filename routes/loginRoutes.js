@@ -20,10 +20,10 @@ router.post("/auth", async (req, res) => {
       if (cmp) {
         res.json(user);
       } else {
-        res.send("invalid password.");
+        res.status(400).send("invalid password.");
       }
     } else {
-      res.send("invalid username ");
+      res.status(400).send("invalid username ");
     }
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
