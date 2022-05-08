@@ -1,7 +1,7 @@
 /** @format */
 
 require("dotenv").config();
-
+const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
@@ -16,6 +16,7 @@ var bodyParser = require("body-parser");
 const app = express();
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
+app.use(cors());
 
 app.use("/case/", cases);
 app.use("/user/", registeruser);
