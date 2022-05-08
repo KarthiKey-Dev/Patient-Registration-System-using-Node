@@ -107,8 +107,12 @@ router.post("/Sync", async (req, res) => {
 
 router.post("/search-case", async (req, res) => {
   try {
-    const find = await Model.find({ patient_name: req.body.patient_name });
-    res.json(find);
+    // const find = await Model.find({ patient_name: req.body.patient_name });
+    // res.json(find);
+    var regex = new RegExp(req.body.patient_name, "i");
+    Model.find({ patient_name: regex }).then((result) => {
+      res.json(result);
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
