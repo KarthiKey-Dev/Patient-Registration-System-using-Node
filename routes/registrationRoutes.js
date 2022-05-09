@@ -4,7 +4,15 @@ const Model = require("../model/registrationModel");
 // const bcrypt = require("bcryptjs");
 const router = express.Router();
 // const saltRounds = 10;
-//Post Method
+
+
+/**
+ * TODO
+ * need to encrypt user password
+ * 
+ */
+
+// new user registration
 router.post("/create", async (req, res) => {
   try {
     const data = await new Model({
@@ -15,13 +23,13 @@ router.post("/create", async (req, res) => {
       user_type: req.body.user_type,
     });
     const dataToSave = await data.save();
-    res.status(200).json(dataToSave);
+    res.status(200).json({message:'user successfully created',user:dataToSave});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-//Get all Method
+//Get all users
 router.get("/getAll", async (req, res) => {
   try {
     const data = await Model.find();
@@ -31,7 +39,7 @@ router.get("/getAll", async (req, res) => {
   }
 });
 
-//Get by ID Method
+//Get user by id
 router.get("/getOne/:id", async (req, res) => {
   try {
     const data = await Model.findById(req.params.id);
@@ -41,7 +49,7 @@ router.get("/getOne/:id", async (req, res) => {
   }
 });
 
-//Update by ID Method
+//Update user by ID
 router.patch("/update/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -49,19 +57,19 @@ router.patch("/update/:id", async (req, res) => {
     const options = { new: true };
 
     const result = await Model.findByIdAndUpdate(id, updatedData, options);
+    res.json({message:'case updated successfully', Result : result});
 
-    res.send(result);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-//Delete by ID Method
+//Delete user by ID
 router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
-    res.send(` ${data.user_name} has been deleted..`);
+    res.json({message : `${data.patient_name} has been deleted..`});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

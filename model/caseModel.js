@@ -11,14 +11,6 @@ const caseSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  created_At: {
-    type: Date,
-    default: Date.now,
-  },
-  updated_At: {
-    type: Date,
-    default: Date.now,
-  },
   patient_name: {
     required: true,
     type: String,
@@ -67,6 +59,8 @@ const caseSchema = new mongoose.Schema({
     // required: true,
     type: String,
   },
+},{
+  timestamps: true
 });
 
 module.exports = mongoose.model("Casedata", caseSchema);

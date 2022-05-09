@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   user_name: {
     required: true,
     type: String,
+    unique: true 
   },
   user_password: {
     required: true,
@@ -23,6 +24,8 @@ const userSchema = new mongoose.Schema({
     // required: true,
     type: String,
   },
+},{
+  timestamps: true
 });
 
 module.exports = mongoose.model("user", userSchema);

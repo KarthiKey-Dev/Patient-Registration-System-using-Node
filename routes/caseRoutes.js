@@ -4,7 +4,12 @@ const Model = require("../model/caseModel");
 
 const router = express.Router();
 
-//Post Method
+/**
+ * TODO
+ * 
+ */
+
+//create new case
 router.post("/newCase", async (req, res) => {
   const data = await new Model({
     case_status: req.body.case_status,
@@ -26,33 +31,43 @@ router.post("/newCase", async (req, res) => {
   });
   try {
     const dataToSave = await data.save();
-    res.status(200).json(dataToSave);
+    res.status(200).json({message:'case successfully created',user:dataToSave});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-//Get all Method
+//Get all cases
 router.get("/getCaseAll", async (req, res) => {
   try {
     const data = await Model.find();
-    res.json(data);
+    res.json({Result : data});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Get by ID Method
+//Get case by userID 
+router.post("/getCaseByUserId", async (req, res) => {
+  try {
+    const data = await Model.find({user_id:req.body.user_id});
+    res.json({Result : data});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//Get case by caseID
 router.get("/getCaseBy/:id", async (req, res) => {
   try {
     const data = await Model.findById(req.params.id);
-    res.json(data);
+    res.json({Result : data});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Update by ID Method
+//Update case by ID
 router.patch("/updateCase/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -61,23 +76,24 @@ router.patch("/updateCase/:id", async (req, res) => {
 
     const result = await Model.findByIdAndUpdate(id, updatedData, options);
 
-    res.send(result);
+    res.json({message:'case updated successfully', Result : result});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-//Delete by ID Method
+//Delete case by ID
 router.delete("/deleteCase/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
-    res.send(` ${data.patient_name} has been deleted..`);
+    res.json({message : `${data.patient_name} has been deleted..`});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
+//case offline sync 
 router.post("/Sync", async (req, res) => {
   try {
     const dataToSave = await req.body.map((e) => {
@@ -99,12 +115,13 @@ router.post("/Sync", async (req, res) => {
       });
       data.save();
     });
-    res.status(200).json({ message: "Success" });
+    res.status(200).json({ message: "cases successfully uploaded" });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
+//search case by patient name
 router.post("/search-case", async (req, res) => {
   try {
     // const find = await Model.find({ patient_name: req.body.patient_name });

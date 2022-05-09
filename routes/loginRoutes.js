@@ -4,10 +4,16 @@ const Model = require("../model/registrationModel");
 // bcrypt = require("bcrypt");
 const router = express.Router();
 
-//Post Method
-router.post("/auth", async (req, res) => {
-  const data = await Model.find();
+/**
+ * TODO 
+ * decrypt user password
+ * need to add JSON token 
+ * 
+ * */ 
 
+//user login
+router.post("/auth", async (req, res) => {
+  // const data = await Model.find();
   try {
     const user = await Model.findOne({ user_name: req.body.user_name });
     if (user) {
@@ -20,10 +26,10 @@ router.post("/auth", async (req, res) => {
       if (cmp) {
         res.json(user);
       } else {
-        res.status(400).send("invalid password.");
+        res.status(400).json({message:"invalid password."});
       }
     } else {
-      res.status(400).send("invalid username ");
+      res.status(400).json({ message:"invalid username "});
     }
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
