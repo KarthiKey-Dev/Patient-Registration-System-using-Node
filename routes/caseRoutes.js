@@ -6,7 +6,7 @@ const router = express.Router();
 
 /**
  * TODO
- * 
+ *
  */
 
 //create new case
@@ -31,7 +31,9 @@ router.post("/newCase", async (req, res) => {
   });
   try {
     const dataToSave = await data.save();
-    res.status(200).json({message:'case successfully created',user:dataToSave});
+    res
+      .status(200)
+      .json({ message: "case successfully created", user: dataToSave });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -41,17 +43,22 @@ router.post("/newCase", async (req, res) => {
 router.get("/getCaseAll", async (req, res) => {
   try {
     const data = await Model.find();
-    res.json({Result : data});
+    res.json({ Result: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Get case by userID 
+//Get case by userID
 router.post("/getCaseByUserId", async (req, res) => {
   try {
-    const data = await Model.find({user_id:req.body.user_id});
-    res.json({Result : data});
+    if (req.body.user_id) {
+      const data = await Model.find({ user_id: req.body.user_id });
+      res.json({ Result: data });
+    } else {
+      const data = await Model.find();
+      res.json({ Result: data });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -61,7 +68,7 @@ router.post("/getCaseByUserId", async (req, res) => {
 router.get("/getCaseBy/:id", async (req, res) => {
   try {
     const data = await Model.findById(req.params.id);
-    res.json({Result : data});
+    res.json({ Result: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -76,7 +83,7 @@ router.patch("/updateCase/:id", async (req, res) => {
 
     const result = await Model.findByIdAndUpdate(id, updatedData, options);
 
-    res.json({message:'case updated successfully', Result : result});
+    res.json({ message: "case updated successfully", Result: result });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -87,13 +94,13 @@ router.delete("/deleteCase/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
-    res.json({message : `${data.patient_name} has been deleted..`});
+    res.json({ message: `${data.patient_name} has been deleted..` });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-//case offline sync 
+//case offline sync
 router.post("/Sync", async (req, res) => {
   try {
     const dataToSave = await req.body.map((e) => {
