@@ -5,11 +5,10 @@ const Model = require("../model/registrationModel");
 const router = express.Router();
 // const saltRounds = 10;
 
-
 /**
  * TODO
  * need to encrypt user password
- * 
+ *
  */
 
 // new user registration
@@ -17,13 +16,16 @@ router.post("/create", async (req, res) => {
   try {
     const data = await new Model({
       user_name: req.body.user_name,
-      user_password: req.body.user_password,
+      // user_password: req.body.user_password,
+      user_email: req.body.user_email,
       user_org: req.body.user_org,
       user_position: req.body.user_position,
       user_type: req.body.user_type,
     });
     const dataToSave = await data.save();
-    res.status(200).json({message:'user successfully created',user:dataToSave});
+    res
+      .status(200)
+      .json({ message: "user successfully created", user: dataToSave });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -57,8 +59,7 @@ router.patch("/update/:id", async (req, res) => {
     const options = { new: true };
 
     const result = await Model.findByIdAndUpdate(id, updatedData, options);
-    res.json({message:'case updated successfully', Result : result});
-
+    res.json({ message: "case updated successfully", Result: result });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -69,7 +70,7 @@ router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const data = await Model.findByIdAndDelete(id);
-    res.json({message : `${data.patient_name} has been deleted..`});
+    res.json({ message: `${data.patient_name} has been deleted..` });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
