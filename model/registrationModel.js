@@ -42,7 +42,8 @@ const userSchema = new mongoose.Schema(
     },
     user_password: {
       type: String,
-      default: randomstring.generate(10),
+      // default: randomstring.generate(10),
+      default: "1234",
     },
   },
   {
