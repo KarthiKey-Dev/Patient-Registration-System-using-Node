@@ -34,7 +34,7 @@ router.post("/create", async (req, res) => {
 //Get all users
 router.get("/getAll", async (req, res) => {
   try {
-    const data = await Model.find();
+    const data = await Model.find().sort({ createdAt: -1 });
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -42,7 +42,7 @@ router.post("/newCase", async (req, res) => {
 //Get all cases
 router.get("/getCaseAll", async (req, res) => {
   try {
-    const data = await Model.find();
+    const data = await Model.find().sort({ createdAt: -1 });
     res.json({ Result: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
