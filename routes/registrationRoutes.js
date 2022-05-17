@@ -18,7 +18,7 @@ router.post("/create", async (req, res) => {
       user_name: req.body.user_name,
       // user_password: req.body.user_password,
       user_email: req.body.user_email,
-      user_org: req.body.user_org,
+      user_org: req.body.user_org.toUpperCase(),
       user_position: req.body.user_position,
       user_type: req.body.user_type,
     });
@@ -66,9 +66,9 @@ router.patch("/update/:id", async (req, res) => {
 });
 
 //Delete user by ID
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.body.id;
     const data = await Model.findByIdAndDelete(id);
     res.json({ message: `${data.patient_name} has been deleted..` });
   } catch (error) {
