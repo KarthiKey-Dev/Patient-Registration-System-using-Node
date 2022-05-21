@@ -75,9 +75,9 @@ router.get("/getCaseBy/:id", async (req, res) => {
 });
 
 //Update case by ID
-router.patch("/updateCase/:id", async (req, res) => {
+router.patch("/updateCase", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.body.id;
     const updatedData = req.body;
     const options = { new: true };
 
@@ -90,9 +90,9 @@ router.patch("/updateCase/:id", async (req, res) => {
 });
 
 //Delete case by ID
-router.delete("/deleteCase/:id", async (req, res) => {
+router.delete("/deleteCase", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.body.id;
     const data = await Model.findByIdAndDelete(id);
     res.json({ message: `${data.patient_name} has been deleted..` });
   } catch (error) {
