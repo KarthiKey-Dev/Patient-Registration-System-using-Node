@@ -5,11 +5,11 @@ const Model = require("../model/registrationModel");
 const router = express.Router();
 
 /**
- * TODO 
+ * TODO
  * decrypt user password
- * need to add JSON token 
- * 
- * */ 
+ * need to add JSON token
+ *
+ * */
 
 //user login
 router.post("/auth", async (req, res) => {
@@ -24,12 +24,14 @@ router.post("/auth", async (req, res) => {
       // const isMatch = user.user_password === req.body.user_password;
       const cmp = req.body.user_password === user.user_password;
       if (cmp) {
-        res.json(user);
+        res
+          .status(200)
+          .json({ message: "Logged In Successfully.", User: user });
       } else {
-        res.status(400).json({message:"invalid password."});
+        res.status(400).json({ message: "invalid password." });
       }
     } else {
-      res.status(400).json({ message:"invalid username "});
+      res.status(400).json({ message: "invalid username " });
     }
   } catch (error) {
     res.status(500).json({ message: "something went wrong" });
