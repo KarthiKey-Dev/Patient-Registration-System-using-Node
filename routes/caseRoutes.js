@@ -65,9 +65,9 @@ router.post("/getCaseByUserId", async (req, res) => {
 });
 
 //Get case by caseID
-router.get("/getCaseBy/:id", async (req, res) => {
+router.get("/getCaseBy", async (req, res) => {
   try {
-    const data = await Model.findById(req.params.id);
+    const data = await Model.findById(req.body.id);
     res.json({ Result: data });
   } catch (error) {
     res.status(500).json({ message: error.message });

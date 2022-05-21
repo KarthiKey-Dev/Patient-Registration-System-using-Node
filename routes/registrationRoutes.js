@@ -42,9 +42,9 @@ router.get("/getAll", async (req, res) => {
 });
 
 //Get user by id
-router.get("/getOne/:id", async (req, res) => {
+router.get("/getOne", async (req, res) => {
   try {
-    const data = await Model.findById(req.params.id);
+    const data = await Model.findById(req.body.id);
     res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -52,9 +52,9 @@ router.get("/getOne/:id", async (req, res) => {
 });
 
 //Update user by ID
-router.patch("/update/:id", async (req, res) => {
+router.patch("/update", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.body.id;
     const updatedData = req.body;
     const options = { new: true };
 
