@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  AccessToken: {
+    type: String,
+    default: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+  },
 });
 
 module.exports = mongoose.model("user", userSchema);
