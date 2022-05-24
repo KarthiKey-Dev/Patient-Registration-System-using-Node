@@ -26,7 +26,11 @@ router.post("/auth", async (req, res) => {
       if (cmp) {
         res
           .status(200)
-          .json({ message: "Logged In Successfully.", User: user });
+          .json({
+            message: "Logged In Successfully.",
+            User: user,
+            AccessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+          });
       } else {
         res.status(400).json({ message: "invalid password." });
       }
