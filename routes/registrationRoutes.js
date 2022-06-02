@@ -18,7 +18,7 @@ router.post("/create", async (req, res) => {
       user_name: req.body.user_name,
       // user_password: req.body.user_password,
       user_email: req.body.user_email,
-      user_org: req.body.user_org,
+      org_id: req.body.org_id,
       user_position: req.body.user_position,
       user_type: req.body.user_type,
     });
