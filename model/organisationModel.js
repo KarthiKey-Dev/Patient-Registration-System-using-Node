@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     org_id: {
-      type: Number,
+      type: String,
       default: mongoose.Types.ObjectId,
       index: { unique: true },
     },
