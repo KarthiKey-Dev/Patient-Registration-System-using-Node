@@ -30,7 +30,7 @@ router.post("/auth", async (req, res) => {
           message: "Logged In Successfully.",
           user: user,
           accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-          form_Templates: FormTemplate,
+          form_templates: FormTemplate,
         });
       } else {
         res.status(400).json({ message: "invalid password." });
