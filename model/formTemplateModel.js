@@ -6,7 +6,7 @@ const Schema = new mongoose.Schema(
   {
     form_template_id: {
       type: String,
-      default: moment().unix(),
+      default: Date.now(),
     },
     form_display_name: {
       required: true,
