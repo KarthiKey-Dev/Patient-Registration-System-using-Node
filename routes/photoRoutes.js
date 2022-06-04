@@ -46,7 +46,7 @@ router.delete("/deletePhoto", async (req, res) => {
   try {
     const id = req.body.id;
     const data = await Model.findOneAndDelete({ photo_id: req.body.photo_id });
-    res.send(` ${data.org_name} has been deleted..`);
+    res.send(` ${data.photo_id} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
