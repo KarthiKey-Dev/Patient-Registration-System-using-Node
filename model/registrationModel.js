@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
       ],
     },
     org_id: {
-      type: Number,
+      type: String,
     },
     user_position: {
       // required: true,
