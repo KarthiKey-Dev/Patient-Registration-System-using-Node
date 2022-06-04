@@ -8,7 +8,19 @@ const Schema = new mongoose.Schema(
   {
     form_template_id: {
       type: String,
-      default: randomstring.generate(12),
+      default: {
+        $trunc: [
+          {
+            $multiply: [
+              {
+                $rand: {},
+              },
+              100000000000000,
+            ],
+          },
+          -1,
+        ],
+      },
       unique: true,
     },
     form_display_name: {
