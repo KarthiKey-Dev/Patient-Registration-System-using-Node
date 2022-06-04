@@ -2,11 +2,14 @@
 
 const mongoose = require("mongoose");
 const moment = require("moment");
+var randomstring = require("randomstring");
+
 const Schema = new mongoose.Schema(
   {
     form_template_id: {
       type: String,
-      default: Date.now(),
+      default: randomstring.generate(12),
+      unique: true,
     },
     form_display_name: {
       required: true,
