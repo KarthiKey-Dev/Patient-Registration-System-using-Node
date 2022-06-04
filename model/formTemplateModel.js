@@ -8,7 +8,8 @@ const Schema = new mongoose.Schema(
   {
     form_template_id: {
       type: String,
-      default: { $rand: {} },
+      default: mongoose.Types.ObjectId,
+      index: { unique: true },
     },
     form_display_name: {
       required: true,
