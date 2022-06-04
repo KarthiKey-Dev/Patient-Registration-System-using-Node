@@ -10,7 +10,7 @@ const registeruser = require("./routes/registrationRoutes");
 const cases = require("./routes/caseRoutes");
 const login = require("./routes/loginRoutes");
 const organisation = require("./routes/organisationRoute");
-
+const formTemplate = require("./routes/formTemplateRoutes");
 // const offlineSync = require("./routes/caseRoutes");
 
 var bodyParser = require("body-parser");
@@ -24,6 +24,7 @@ app.use("/case/", cases);
 app.use("/user/", registeruser);
 app.use("/login/", login);
 app.use("/org/", organisation);
+app.use("/formTemplate/", formTemplate);
 
 mongoose.connect(uri);
 const database = mongoose.connection;

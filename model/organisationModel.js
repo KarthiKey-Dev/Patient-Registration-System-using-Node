@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema(
   {
     org_id: {
-      required: true,
       type: Number,
     },
     org_name: {

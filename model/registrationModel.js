@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-var randomstring = require("randomstring");
+const randomString = require("randomstring");
 
 var validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema(
       ],
     },
     org_id: {
+      default: randomString.generate(10),
       // required: true,
       type: Number,
     },
@@ -42,7 +43,6 @@ const userSchema = new mongoose.Schema(
     },
     user_password: {
       type: String,
-      // default: randomstring.generate(10),
       default: "123456",
     },
   },
