@@ -12,6 +12,7 @@ const login = require("./routes/loginRoutes");
 const organisation = require("./routes/organisationRoute");
 const formTemplate = require("./routes/formTemplateRoutes");
 const photo = require("./routes/photoRoutes");
+const form = require("./routes/formRoutes");
 // const offlineSync = require("./routes/caseRoutes");
 
 var bodyParser = require("body-parser");
@@ -27,6 +28,7 @@ app.use("/login/", login);
 app.use("/org/", organisation);
 app.use("/formTemplate/", formTemplate);
 app.use("/photo/", photo);
+app.use("/form/", form);
 
 mongoose.connect(uri);
 const database = mongoose.connection;
