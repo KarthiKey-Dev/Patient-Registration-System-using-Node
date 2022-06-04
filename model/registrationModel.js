@@ -2,8 +2,6 @@
 
 const mongoose = require("mongoose");
 
-const randomString = require("randomstring");
-
 var validateEmail = function (email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
@@ -29,8 +27,6 @@ const userSchema = new mongoose.Schema(
       ],
     },
     org_id: {
-      default: randomString.generate(10),
-      // required: true,
       type: Number,
     },
     user_position: {

@@ -1,8 +1,6 @@
 /** @format */
 
 const mongoose = require("mongoose");
-const moment = require("moment");
-var randomstring = require("randomstring");
 
 const Schema = new mongoose.Schema(
   {

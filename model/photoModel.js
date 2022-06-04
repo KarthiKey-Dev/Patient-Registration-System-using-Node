@@ -4,22 +4,25 @@ const mongoose = require("mongoose");
 
 const Schema = new mongoose.Schema(
   {
-    org_id: {
+    photo_id: {
       type: Number,
       default: mongoose.Types.ObjectId,
       index: { unique: true },
     },
-    org_name: {
+    photo_url: {
       required: true,
       type: String,
     },
-    total_users: {
-      type: Number,
-      default: 0,
+    creator_id: {
+      type: String,
+      required: true,
     },
-    org_users: {
-      type: [Object],
-      default: [],
+    form_id: {
+      type: String,
+      required: true,
+    },
+    form_local_id: {
+      type: String,
     },
   },
   {
@@ -27,4 +30,4 @@ const Schema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("organisation", Schema);
+module.exports = mongoose.model("photo", Schema);
