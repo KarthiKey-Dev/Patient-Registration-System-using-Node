@@ -28,8 +28,8 @@ router.post("/auth", async (req, res) => {
       if (cmp) {
         res.status(200).json({
           message: "Logged In Successfully.",
-          User: user,
-          AccessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+          user: user,
+          accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
           form_Templates: FormTemplate,
         });
       } else {
