@@ -13,6 +13,9 @@ const Schema = new mongoose.Schema(
       required: true,
       type: String,
     },
+    gender: {
+      type: String,
+    },
     form_data: {
       type: String,
     },

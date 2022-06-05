@@ -8,6 +8,7 @@ router.post("/newForm", async (req, res) => {
   const data = await new Model({
     form_display_name: req.body.form_display_name,
     form_data: req.body.form_data,
+    gender: req.body.gender,
   });
   try {
     const save = await data.save();
