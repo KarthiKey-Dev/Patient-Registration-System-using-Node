@@ -44,7 +44,6 @@ router.post("/getFormTemplateById", async (req, res) => {
 
 router.delete("/deleteFromTemplate", async (req, res) => {
   try {
-    const id = req.body.id;
     const data = await Model.findOneAndDelete({
       form_template_id: req.body.form_template_id,
     });
