@@ -48,7 +48,7 @@ router.delete("/deleteFromTemplate", async (req, res) => {
     const data = await Model.findOneAndDelete({
       form_template_id: req.body.form_template_id,
     });
-    res.send(` ${data.form_display_name} has been deleted..`);
+    res.send(` ${req.body.form_template_id} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
