@@ -12,6 +12,10 @@ const caseSchema = new mongoose.Schema(
       required: true,
       type: String,
     },
+    gender: {
+      required: true,
+      type: String,
+    },
     patient_name: {
       required: true,
       type: String,
