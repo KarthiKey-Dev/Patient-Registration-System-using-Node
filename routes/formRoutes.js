@@ -12,6 +12,7 @@ router.post("/newForm", async (req, res) => {
     form_displayname: req.body.form_displayname,
     case_local_id: req.body.case_local_id,
     form_local_id: req.body.form_local_id,
+    case_id: req.body.case_id,
   });
   try {
     const save = await data.save();
