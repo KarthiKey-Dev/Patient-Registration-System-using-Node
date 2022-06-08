@@ -16,7 +16,9 @@ router.post("/newForm", async (req, res) => {
   });
   try {
     const save = await data.save();
-    res.status(200).json(save);
+    res
+      .status(200)
+      .json({ message: "form created successfully", Response: save });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
