@@ -12,7 +12,7 @@ var data = JSON.stringify({
 
 var config = {
   method: "post",
-  url: "https://data.mongodb-api.com/app/data-iklud/endpoint/data/beta/action/findOne",
+  url: "",
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Request-Headers": "*",
